@@ -9,52 +9,54 @@
     	
     	function parseHashBangArgs(aURL) {
 
-			aURL = aURL || window.location.href;
+		aURL = aURL || window.location.href;
 	
-			var vars = {};
-			var hashes = aURL.slice(aURL.indexOf('#') + 1).split('&');
+		var vars = {};
+		var hashes = aURL.slice(aURL.indexOf('#') + 1).split('&');
 
-			for(var i = 0; i < hashes.length; i++) {
-			   var hash = hashes[i].split('=');
+		for(var i = 0; i < hashes.length; i++) {
+			var hash = hashes[i].split('=');
 	  
-			   if(hash.length > 1) {
-				   vars[hash[0]] = hash[1];
-			   } else {
-				  vars[hash[0]] = null;
-			   }      
-			}
+			if(hash.length > 1) {
+				vars[hash[0]] = hash[1];
+			} else {
+				vars[hash[0]] = null;
+			}      
+		}
 
-			return vars;
-		}
-		var params = parseHashBangArgs();
-		if (!params['access_token']) {
-			this.window.location = "https://auth.zenginehq.com/oauth2/v1/authorize?client_id=84b77d2320a4c3a4741711fd18dffc45e5b9&response_type=token&state=8f98asdnf989ex8xa9f8";
-		}
+		return vars;
+	}
+		
+	var params = parseHashBangArgs();
+	if (!params['access_token']) {
+		this.window.location = "https://auth.zenginehq.com/oauth2/v1/authorize?client_id=84b77d2320a4c3a4741711fd18dffc45e5b9&response_type=token&state=8f98asdnf989ex8xa9f8";
+	}
+    	
     	var module = angular.module("example", ["angularGrid"]);
     	
-		module.controller("exampleCtrl", function($scope, $http) {
+	module.controller("exampleCtrl", function($scope, $http) {
 
-			var columnDefs = [
-				{headerName: "ID", field: "id", width: 90},
-				{headerName: "Expense Description", field: "name", width: 350},
-				{headerName: "Expense Date", field: "field156621", width: 120},
-				{headerName: "Expense Type", field: "field156620", width: 150},
-				{headerName: "Business Reason", field: "field156619", width: 250},
-				{headerName: "# of Mgr Approvals", field: "field156622", width: 110}
-			];
+		var columnDefs = [
+			{headerName: "ID", field: "id", width: 90},
+			{headerName: "Expense Description", field: "name", width: 350},
+			{headerName: "Expense Date", field: "field156621", width: 120},
+			{headerName: "Expense Type", field: "field156620", width: 150},
+			{headerName: "Business Reason", field: "field156619", width: 250},
+			{headerName: "# of Mgr Approvals", field: "field156622", width: 110}
+		];
 
-			$scope.gridOptions = {
-				columnDefs: columnDefs,
-				rowData: null
-			};
+		$scope.gridOptions = {
+			columnDefs: columnDefs,
+			rowData: null
+		};
 
-			$http.get("https://api.zenginehq.com/v1/forms/17706/records.json?access_token=" + params['access_token'])
-				.then(function(res){
-				console.log(res);
-					$scope.gridOptions.rowData = res.data.data;
-					$scope.gridOptions.api.onNewRows();
-				});
-		});
+		$http.get("https://api.zenginehq.com/v1/forms/17706/records.json?access_token=" + params['access_token'])
+			.then(function(res){
+			console.log(res);
+				$scope.gridOptions.rowData = res.data.data;
+				$scope.gridOptions.api.onNewRows();
+			});
+	});
 
     </script>
 </head>
