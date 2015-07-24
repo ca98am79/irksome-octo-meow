@@ -47,7 +47,8 @@
 		$scope.gridOptions = {
 			columnDefs: columnDefs,
 			rowData: null,
-			enableColResize: true
+			enableColResize: true,
+			pinnedColumnCount: 2
 		};
 
 		$http.get("https://api.zenginehq.com/v1/forms/7264/records.json?access_token=" + params['access_token'])
