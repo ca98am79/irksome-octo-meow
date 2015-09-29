@@ -38,20 +38,20 @@
 
 		var columnDefs = [
 			{headerName: "ID", field: "id", width: 90},
-			{headerName: "Expense Description", field: "name", width: 50},
-			{headerName: "Expense Date", field: "field156621", width: 120},
-			{headerName: "Expense Type", field: "field156620", width: 150},
-			{headerName: "Business Reason", field: "field156619", width: 250},
-			{headerName: "# of Mgr Approvals", field: "field156622", width: 110}
+			{headerName: "Last Name", field: "field65624", width: 120},
+			{headerName: "Company", field: "field126203", width: 150},
+			{headerName: "Email", field: "field65627", width: 250}
+			
 		];
 
 		$scope.gridOptions = {
 			columnDefs: columnDefs,
 			rowData: null,
-			enableColResize: true
+			enableColResize: true,
+			pinnedColumnCount: 2
 		};
 
-		$http.get("https://api.zenginehq.com/v1/forms/17706/records.json?access_token=" + params['access_token'])
+		$http.get("https://api.zenginehq.com/v1/forms/7264/records.json?access_token=" + params['access_token'])
 			.then(function(res){
 			console.log(res);
 				$scope.gridOptions.rowData = res.data.data;
@@ -63,6 +63,6 @@
 </head>
 <body ng-app="example" ng-controller="exampleCtrl">
 <h1>Web Forms Test: Expense Requests</h1>
-    <div ag-grid="gridOptions" class="ag-fresh" style="height: 100%;"></div>
+    <div ag-grid="gridOptions" class="ag-fresh" style="width: 600px; height: 400px;"></div>
 </body>
 </html>
