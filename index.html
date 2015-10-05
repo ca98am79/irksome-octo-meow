@@ -1,7 +1,6 @@
 <html>
 <head>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>    
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-route.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>   
 <!-- you don't need ignore=notused in your code, this is just here to trick the cache -->
     <script src="node_modules/angular-grid/dist/ag-grid.js?ignore=notused1"></script>
     <link rel="stylesheet" type="text/css" href="node_modules/angular-grid/dist/ag-grid.css?ignore=notused1">
@@ -33,7 +32,7 @@
 		this.window.location = "https://auth.zenginehq.com/oauth2/v1/authorize?client_id=84b77d2320a4c3a4741711fd18dffc45e5b9&response_type=token&state=8f98asdnf989ex8xa9f8";
 	}
     	
-    	var module = angular.module("example", ["ngRoute","angularGrid"]);
+    	var module = angular.module("example", ["agGrid"]);
     	
 	module.controller("exampleCtrl", function($scope, $http) {
 
@@ -49,7 +48,8 @@
 			columnDefs: columnDefs,
 			rowData: null,
 			enableColResize: true,
-			pinnedColumnCount: 2
+			pinnedColumnCount: 2
+
 		};
 
 		$http.get("https://api.zenginehq.com/v1/forms/7264/records.json?access_token=" + params['access_token'])
