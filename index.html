@@ -53,7 +53,7 @@
 
 		};
 
-		$http.get("https://api.zenginehq.com/v1/forms/682/records.json?access_token=" + params['access_token'])
+		$http.get("https://api.zenginehq.com/v1/forms/682/records.json?limit100?access_token=" + params['access_token'])
 			.then(function(res){
 			console.log(res);
 				$scope.gridOptions.rowData = res.data.data;
